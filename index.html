@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery Service</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .hero {
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .features, .menu, .contact {
+            padding: 20px;
+        }
+
+        .menu-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        form {
+            display: inline-block;
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        form label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food Delivery Service</h1>
+        <nav>
+            <ul>
+                <li><a href="#home" onclick="smoothScroll('home')">Home</a></li>
+                <li><a href="#menu" onclick="smoothScroll('menu')">Menu</a></li>
+                <li><a href="#contact" onclick="smoothScroll('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero">
+            <h2>Delicious Food Delivered Right to Your Door</h2>
+            <p>Explore our menu and place your order today!</p>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="menu" style="display: none;">
+            <h2>Our Menu</h2>
+            <div class="menu-item">
+                <h3>Pizza</h3>
+                <p>Delicious cheese pizza with a crispy crust.</p>
+                <p>Price: $12.00</p>
+            </div>
+            <div class="menu-item">
+                <h3>Burger</h3>
+                <p>Juicy burger with lettuce, tomato, and cheese.</p>
+                <p>Price: $8.00</p>
+            </div>
+            <div class="menu-item">
+                <h3>Salad</h3>
+                <p>Fresh salad with a variety of vegetables.</p>
+                <p>Price: $7.00</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact" style="display: none;">
+            <h2>Contact Us</h2>
+            <form action="send-message.php" method="post" onsubmit="return validateForm()">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Food Delivery Service. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function smoothScroll(sectionId) {
+            document.querySelectorAll('main > section').forEach(function(section) {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+            window.scrollTo({
+                top: document.getElementById(sectionId).offsetTop,
+                behavior: 'smooth'
+            });
+        }
+
+        function validateForm() {
+            var name = document.getElementById('name').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var message = document.getElementById('message').value.trim();
+
+            if (name === "" || email === "" || message === "") {
+                alert("All fields are required.");
+                return false;
+            }
+            return true;
+        }
+
+        // Default to showing the home section
+        smoothScroll('home');
+    </script>
+</body>
+</html>
